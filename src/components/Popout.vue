@@ -1,15 +1,12 @@
 <template>
     <article>
       <div class="addAlert">
-        <slot name="username"></slot>
         <!-- <input type="text" placeholder="型号" v-model="skuVal"> -->
-        <input type="text" placeholder="型号">
-        <slot name="password"></slot>
+        <p><slot name="username"></slot><input type="text" placeholder="型号"></p>
         <!-- <input type="text" placeholder="产品名" v-model="nameVal"> -->
-        <input type="text" placeholder="产品名">
-        <slot name="verify"></slot>
+        <p><slot name="password"></slot><input type="text" placeholder="产品名"></p>
         <!-- <input type="text" placeholder="价格" v-model="priceVal"> -->
-        <input type="text" placeholder="价格">
+        <p><slot name="verify"></slot><input type="text" placeholder="价格"><p>
         <div class="button">
           <input type="button" value="确定" @click="increase()">
           <input type="button" value="取消" @click="addShow()">
@@ -45,15 +42,16 @@
     align-items: center;
     justify-content: center;
   }
-  .addAlert>input[type="text"] {
-    width: 80%;
+  .addAlert>p {width: 80%;}
+  .addAlert>p>input[type="text"] {
+    width: 100%;
     height: 20px;
     padding: 5px;
     margin-bottom: 15px;
     border: 1px solid #00000060;
     border-radius: 5px;
   }
-  .addAlert>input[type="text"]:focus {
+  .addAlert>p>input[type="text"]:focus {
     outline: 0;
     box-shadow: 0px 0px 0px 1px black;
   }
