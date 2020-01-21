@@ -8,7 +8,7 @@
       <p class="option">
         <span  v-if="judge">
         <label for="every">
-          <p><input type="checkbox" id="every" @click="CheckAll()">选中所有</p>
+          <p><input type="checkbox" id="every" :checked="option" @click="CheckAll()">选中所有</p>
         </label>
         <button @click="addShow()">添加</button>
         <input type="button" value="删除" @click="everyDele()" />
@@ -16,7 +16,7 @@
         </span>
         <span v-else>
         <label for="every">
-          <p><input type="checkbox" id="every" @click="CheckAll()">选中所有</p>
+          <p><input type="checkbox" id="every" :checked="option" @click="CheckAll()">选中所有</p>
         </label>
         <input type="button" value="恢复" @click="recover()" />
         <input type="button" value="返回" @click="viewData()">
@@ -83,7 +83,7 @@ export default {
     },
     // 显示未删除数据
     viewData () {
-      this.judge = !this.judge
+      this.judge = true
       this.axios.get('http://sbcjc.site/').then((response) => {
         console.log(response.data)
         this.arr = response.data
@@ -221,6 +221,7 @@ export default {
     },
     // 请求删除所有选中状态的数据
     everyDele () {
+      this.option = false
       this.axios.get('http://sbcjc.site/index.php/everyDele',
         {
           params: {
@@ -229,7 +230,6 @@ export default {
         })
         .then((response) => {
           console.log('修改成功!')
-          this.option = !this.option
           this.arrIds = []
           this.arr = response.data
         }).catch((error) => {
@@ -238,6 +238,7 @@ export default {
     },
     // 恢复删除数据
     recover () {
+      this.option = false
       this.axios.get('http://sbcjc.site/index.php/recover',
         {
           params: {
@@ -246,7 +247,6 @@ export default {
         })
         .then((response) => {
           console.log('修改成功!')
-          this.option = !this.option
           this.arrIds = []
           this.arr = response.data
         }).catch((error) => {
