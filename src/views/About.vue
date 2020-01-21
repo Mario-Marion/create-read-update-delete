@@ -1,5 +1,6 @@
 <template>
   <div class="list">
+    <router-link to="/">Home</router-link>
     <MoPaging></MoPaging>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <router-link to="/about">About</router-link>
     <HelloWorld></HelloWorld>
   </div>
 </template>
