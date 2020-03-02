@@ -51,6 +51,7 @@
 </div>
 </template>
 <script>
+// import popout from '@/components/Popout.vue'
 export default {
   data () {
     return {
@@ -83,6 +84,7 @@ export default {
     },
     // 显示未删除数据
     viewData () {
+      this.option = false
       this.judge = true
       this.axios.get('http://sbcjc.site/').then((response) => {
         console.log(response.data)
@@ -91,6 +93,7 @@ export default {
     },
     // 查看历史删除数据
     deleHistory () {
+      this.option = false
       this.judge = !this.judge
       this.axios.get('http://sbcjc.site/index.php/history').then((response) => {
         console.log(response.data)
@@ -278,9 +281,6 @@ export default {
         this.arrIds.push(arrId)
       }
       console.log(this.arrIds)
-    },
-    goBack () {
-      this.judge = !this.judge
     }
   },
   computed: {
@@ -429,7 +429,10 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30%;
-    height: 255px;
+    min-width: 200px;
+    min-height: 220px;
+    max-width: 300px;
+    padding: 20px;
     background-color: white;
     border-radius: 10px;
     display: flex;

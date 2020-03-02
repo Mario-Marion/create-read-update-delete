@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <UserInfo></UserInfo>
     <router-link to="/about">About</router-link>
     <HelloWorld></HelloWorld>
   </div>
@@ -8,11 +9,12 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import UserInfo from './userinfo.vue'
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    HelloWorld,
+    UserInfo
   }
 }
 </script>
