@@ -1,17 +1,29 @@
 <template>
   <div class="list">
-    <router-link to="/">Home</router-link>
+    <router-link to="/home">Home</router-link>
     <SlotComponent>
       <template v-slot:first>
         <h1>来自父组件的具名(first)分发内容</h1>
       </template>
-      <template v-slot:default>
+      <!-- <template v-slot:default="slotProps">
         <input type="button" @click="getElem" value='点击控制台打印DOM元素' />
-        <h1 class="projector" :data-spotlight='message2'>{{message}}</h1>
+        <h1>来自父组件分发的内容(无具名,子组件没slot无具名标签我会被抛弃</h1>
+        <h1 class="projector" :data-spotlight='slotProps.user.name'>{{slotProps.user.name}}</h1>
+      </template> -->
+      <template v-slot:default="{user}">
+        <!-- 解构插槽 -->
+        <input type="button" @click="getElem" value='点击控制台打印DOM元素' />
+        <h1>来自父组件分发的内容(无具名,子组件没slot无具名标签我会被抛弃</h1>
+        <h1 class="projector" :data-spotlight='user.name'>{{user.name}}</h1>
       </template>
       <template v-slot:last>
         <h1 ref="msg">来自父组件的具名(last)分发内容</h1>
       </template>
+      <!-- 如果没有具名插槽可以缩写语法 -->
+      <!-- !!!!!!不能和具名插槽一起使用，会导致作用域不明确!!!!!!!且无效，会导致警告!!!!!!! -->
+      <!-- <SlotComponent v-slot="slotProps">
+        {{slotProps.user.name}}
+      </SlotComponent> -->
     </SlotComponent>
   </div>
 </template>
@@ -20,22 +32,12 @@
 import SlotComponent from '@/components/SlotComponent'
 
 export default {
-  data () {
-    return {
-      message: '来自父组件分发的内容(无具名,子组件没slot无具名标签我会被抛弃)'
-    }
-  },
   components: {
     SlotComponent
   },
   methods: {
     getElem () {
       console.log(this.$refs.msg)
-    }
-  },
-  computed: {
-    message2 () {
-      return this.message + '!'
     }
   }
 }
