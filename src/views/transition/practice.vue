@@ -1,10 +1,9 @@
 <template>
   <div>
-    <!-- <button @click="show = !show"></button>
-    <transition>
-      <p v-if="show"></p>
-    </transition> -->
-    123
+    <button @click="show = !show">过渡</button>
+    <transition name="slide-fade">
+      <p v-if="show">message</p>
+    </transition>
   </div>
 </template>
 
@@ -13,9 +12,20 @@ export default {
   data() {
     return {
       show: true
-    };
+    }
   }
-};
+}
 </script>
 <style scoped>
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>
