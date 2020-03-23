@@ -1,8 +1,8 @@
 <template>
   <div class="list">
     <router-link to="/home">Home</router-link>
-    <SlotComponent>
-      <template v-slot:first>
+    <SlotComponent v-bind:[someAttr]="value">
+      <template #first><!-- v-slot缩写#，必须有参数，匿名为#default ，否则无效。-->
         <h1>来自父组件的具名(first)分发内容</h1>
       </template>
       <!-- <template v-slot:default="slotProps">
@@ -10,9 +10,9 @@
         <h1>来自父组件分发的内容(无具名,子组件没slot无具名标签我会被抛弃</h1>
         <h1 class="projector" :data-spotlight='slotProps.user.name'>{{slotProps.user.name}}</h1>
       </template> -->
-      <template v-slot:default="{user}">
+      <template v-slot:[slotname]="{user}"><!-- 定义动态的插槽[slotname] -->
         <!-- 解构插槽 -->
-        <input type="button" @click="getElem" value='点击控制台打印DOM元素' />
+        <input type="button" @[eventName]="getElem" value='点击控制台打印DOM元素' />
         <h1>来自父组件分发的内容(无具名,子组件没slot无具名标签我会被抛弃</h1>
         <h1 class="projector" :data-spotlight='user.name'>{{user.name}}</h1>
       </template>
@@ -32,6 +32,12 @@
 import SlotComponent from '@/components/SlotComponent'
 
 export default {
+  data() {
+    return {
+      eventName: 'click',
+      slotname: 'default'
+    }
+  },
   components: {
     SlotComponent
   },
