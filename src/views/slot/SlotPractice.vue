@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <router-link to="/home">Home</router-link>
-    <SlotComponent v-bind:[someAttr]="value">
+    <SlotComponent>
       <template #first><!-- v-slot缩写#，必须有参数，匿名为#default ，否则无效。-->
         <h1>来自父组件的具名(first)分发内容</h1>
       </template>
