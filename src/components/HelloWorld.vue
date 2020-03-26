@@ -86,7 +86,7 @@ export default {
     viewData () {
       this.option = false
       this.judge = true
-      this.axios.get('http://sbcjc.site/').then((response) => {
+      this.axios.get('').then((response) => {
         console.log(response.data)
         this.arr = response.data
       })
@@ -95,7 +95,7 @@ export default {
     deleHistory () {
       this.option = false
       this.judge = !this.judge
-      this.axios.get('http://sbcjc.site/index.php/history').then((response) => {
+      this.axios.get('history').then((response) => {
         console.log(response.data)
         this.arr = response.data
       })
@@ -108,7 +108,7 @@ export default {
       } else if (isNaN(this.nameVal) === false || Number(this.skuVal) === 0 || this.nameVal.charAt(0) === ' ') {
         alert('产品名不能为空、不能为数值、前面不能加空格！')
       } else if (isNaN(this.priceVal) === false && this.priceVal > 0) {
-        this.axios.get('http://sbcjc.site/index.php/add',
+        this.axios.get('index.php/add',
           {
             params: {
               skuVal: this.skuVal,
@@ -135,7 +135,7 @@ export default {
       let option = confirm(' 确定删除此数据吗？')
       if (option === true) {
         // this.arr.splice(a, 1)
-        this.axios.get('http://sbcjc.site/index.php/dele',
+        this.axios.get('index.php/dele',
           {
             params: {
               ID: en
@@ -156,11 +156,11 @@ export default {
       console.log(en)
       if (en === '' || Number(en) === 0 || en.charAt(0) === ' ') {
         alert('型号不能为空、不能为数值、前面不能加空格！')
-        this.axios.get('http://sbcjc.site/').then((response) => {
+        this.axios.get('').then((response) => {
           this.arr = response.data
         })
       } else {
-        this.axios.get('http://sbcjc.site/index.php/updata',
+        this.axios.get('index.php/updata',
           {
             params: {
               sku: en,
@@ -179,11 +179,11 @@ export default {
       let value = this.arr[index].name
       if (isNaN(value) === false || Number(value) === 0 || value.charAt(0) === ' ') {
         alert('产品名不能为空、不能为数值、前面不能加空格！')
-        this.axios.get('http://sbcjc.site/').then((response) => {
+        this.axios.get('').then((response) => {
           this.arr = response.data
         })
       } else {
-        this.axios.get('http://sbcjc.site/index.php/updataName',
+        this.axios.get('index.php/updataName',
           {
             params: {
               product_id: this.arr[index].product_id,
@@ -202,7 +202,7 @@ export default {
       let value = this.arr[index].specials_price
       console.log(value)
       if (isNaN(value) === false && value > 0) {
-        this.axios.get('http://sbcjc.site/index.php/updataPrice',
+        this.axios.get('index.php/updataPrice',
           {
             params: {
               product_id: this.arr[index].product_id,
@@ -217,7 +217,7 @@ export default {
           })
       } else {
         alert('价格不能为空且必须为数值')
-        this.axios.get('http://sbcjc.site/').then((response) => {
+        this.axios.get('').then((response) => {
           this.arr = response.data
         })
       }
@@ -225,7 +225,7 @@ export default {
     // 请求删除所有选中状态的数据
     everyDele () {
       this.option = false
-      this.axios.get('http://sbcjc.site/index.php/everyDele',
+      this.axios.get('index.php/everyDele',
         {
           params: {
             product_id: this.arrIds
@@ -242,7 +242,7 @@ export default {
     // 恢复删除数据
     recover () {
       this.option = false
-      this.axios.get('http://sbcjc.site/index.php/recover',
+      this.axios.get('index.php/recover',
         {
           params: {
             product_id: this.arrIds
