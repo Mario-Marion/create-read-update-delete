@@ -1,31 +1,36 @@
 <template>
-  <div>
-    <button @click="show = !show">过渡</button>
-    <transition name="slide-fade">
-      <p v-if="show">message</p>
-    </transition>
-  </div>
+<div>
+  <ul>
+    <li @click="switchover">{{firstView}}</li>
+    <li @click="switchover">{{twoView}}</li>
+  </ul>
+  <component :is='warehouse'></component>
+</div>
 </template>
 
 <script>
+
+import firstView from '../login'
+import twoView from '../userinfo'
+
 export default {
   data() {
     return {
-      show: true
+      firstView: 'firstView',
+      twoView: 'twoView',
+      warehouse: 'firstView'
+    }
+  },
+  components: {
+    firstView,
+    twoView
+  },
+  methods: {
+    switchover () {
+      this.warehouse === this.firstView ? this.warehouse = this.twoView : this.warehouse = this.firstView
     }
   }
 }
 </script>
 <style scoped>
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
-}
 </style>
