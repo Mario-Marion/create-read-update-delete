@@ -32,7 +32,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/transition/practice.vue')
   },
   {
-    path: '/',
+    path: '/prop',
     name: 'prop',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -46,6 +46,30 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/vuex/VuexPractice.vue')
+  },
+  {
+    path: '/render',
+    name: 'render',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/render/parent.vue')
+  },
+  {
+    path: '/custom',
+    name: 'custom',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/user-defined/parent.vue')
+  },
+  {
+    path: '/sync',
+    name: 'sync',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/user-defined/sync.vue')
   }
 ]
 
