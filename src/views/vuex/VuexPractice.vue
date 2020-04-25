@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" @click.stop="alert123()">
       <h1>{{ count }}</h1>
       <h1>{{ max }}</h1>
       <h1>{{ min }}</h1>
@@ -48,6 +48,7 @@ export default {
       // this.$store.commit('increment', {parameter:this.parameter})
     //   this.$store.commit({type: 'increment', parameter:this.parameter})
     // },
+    alert123 () { alert(123) },
     parameter () {
       return 50
     },
@@ -55,7 +56,7 @@ export default {
       this.$store.commit('newattribute')
     },
     increment () {
-      this.$store.dispatch('increment', this.parameter).then(() => { alert(123) })
+      this.$store.dispatch('increment', this.parameter).then(() => { console.log(123) })
     }
   }
 }

@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     enter () { this.login() },
-    a (n) { return n === null ? alert('登陆失败,账户或密码错误') : this.$router.push('/home') },
+    skip (n) { return n === null ? alert('登陆失败,账户或密码错误') : this.$router.push('/home') },
     login () {
       this.axios.get('http://sbcjc.site/index.php/login',
         {
@@ -59,7 +59,7 @@ export default {
           }
         })
         .then((response) => {
-          this.a(response.data)
+          this.skip(response.data)
         }).catch((error) => {
           console.log('删除失败!' + error)
         })
